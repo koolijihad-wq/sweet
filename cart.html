@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>سلة المشتريات | Sweets</title>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="logo-text">Sweets</span>
+      <span class="logo-dot">.</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="sweets.html">الحلويات</a></li>
+        <li><a href="pastries.html">المعجنات</a></li>
+        <li><a href="cart.html">سلة المشتريات</a></li>
+        <li><a href="delivery.html">التوصيل</a></li>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="contact.html">اتصل بنا</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="cart-items">
+    <h2 class="cart-title">سلة المشتريات</h2>
+    
+    <div id="cart-items">
+      <!-- سيتم ملؤه بالجافاسكربت -->
+    </div>
+
+    <div class="cart-total">
+      المجموع: <span id="total">0.00 ر.ي</span>
+    </div>
+
+    <div class="cart-actions">
+      <button id="clear-cart" class="btn btn-secondary">تفريغ السلة</button>
+      <a href="delivery.html" class="btn btn-primary">المتابعة للدفع</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sweets. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <!-- إشعار الحذف -->
+  <div id="cart-notification" class="hidden">تم الحذف من السلة! 🍰</div>
+
+  <script>
+    // تحميل السلة من localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // إظهار إشعار
+    function showNotification(message = 'تم الحذف من السلة! 🍰') {
+      const notif = document.getElementById('cart-notification');
+      notif.textContent = message;
+      notif.classList.add('show');
+      setTimeout(() => {
+        notif.classList.remove('show');
+      }, 2000);
+    }
+
+    // حذف منتج
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart();
+      showNotification();
+    }
+
+    // تفريغ السلة
+    document.getElementById('clear-cart').addEventListener('click', () => {
+      if (cart.length === 0) return;
+      if (confirm('هل أنت متأكد من تفريغ السلة بالكامل؟')) {
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart();
+        showNotification('تم تفريغ السلة! 🗑️');
+      }
+    });
+
+    // عرض محتوى السلة
+    function loadCart() {
+      const cartContainer = document.getElementById('cart-items');
+      const totalEl = document.getElementById('total');
+      
+      cartContainer.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = '<p class="cart-empty">سلة المشتريات فارغة!</p>';
+        totalEl.textContent = '0.00 ر.ي';
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+          <div class="cart-item-info">
+            <h3>${item.name}</h3>
+            <p class="cart-item-price">${item.price.toFixed(2)} ر.ي</p>
+            <p class="cart-item-qty">الكمية: ${item.quantity}</p>
+          </div>
+          <div class="cart-item-total">${itemTotal.toFixed(2)} ر.ي</div>
+          <button onclick="removeFromCart(${index})" class="cart-item-remove">×</button>
+        `;
+        cartContainer.appendChild(div);
+      });
+
+      totalEl.textContent = `${total.toFixed(2)} ر.ي`;
+    }
+
+    // تحميل السلة عند فتح الصفحة
+    loadCart();
+  </script>
+</body>
+</html>

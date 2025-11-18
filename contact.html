@@ -1,0 +1,69 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> اتصل بنا Sweets</title>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="logo-text">Sweets</span>
+      <span class="logo-dot">.</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="sweets.html">الحلويات</a></li>
+        <li><a href="pastries.html">المعجنات</a></li>
+        <li><a href="cart.html">سلة المشتريات</a></li>
+        <li><a href="delivery.html">التوصيل</a></li>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="contact.html">اتصل بنا</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h2 style="text-align: center; margin: 2rem 0;color: red;">اتصل بنا</h2>
+<div style="max-width: 600px; margin: 0 auto; padding: 0 1.5rem;">
+  <form>
+    <div class="form-group">
+      <label for="name">الاسم الكامل</label>
+      <input type="text" id="name" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">رقم الجوال</label>
+      <input type="tel" id="phone" required>
+    </div>
+    <div class="form-group">
+      <label for="message">الرسالة</label>
+      <textarea id="message" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">إرسال</button>
+  </form>
+</div>
+
+<script>
+  document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('تم استلام رسالتك! سنرد عليك قريبًا.');
+    document.querySelector('form').reset();
+  });
+</script>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sweets. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <!-- إشعار السلة -->
+  <div id="cart-notification" class="hidden">تم الإضافة إلى السلة! 🍰</div>
+
+  <!-- جافاسكربت -->
+  <script src="js.js"></script>
+</body>
+</html>
