@@ -30,15 +30,15 @@ header {
 }
 
 .logo {
-  font-size: 2rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #e74c3c, #f39c12);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  letter-spacing: -0.5px;
-  display: flex;
-  align-items: center;
+  font-size: 2rem;                /* يجعل حجم الشعار كبيرًا وواضحًا (32px تقريبًا) */
+  font-weight: 800;               /* يُطبّق وزن خط غامق جدًّا لإبراز الشعار باحترافية */
+  background: linear-gradient(135deg, #e74c3c, #f39c12); /* تدرج لوني ناري-ذهبي من الأعلى اليمين إلى الأسفل اليسار */
+  /*-webkit-background-clip: text;  /* يسمح للتدرج اللوني بالظهور داخل أحرف النص (للمتصفحات المبنية على WebKit مثل Chrome وSafari) */
+  background-clip: text;          /* يحصر اللون داخل الاحرف*/
+  color: transparent;            /* الشفافيه */
+  letter-spacing: -0.5px;         /*  المسافة بين الأحرف  */
+  display: flex;                  /* يحوّل العنصر إلى حاوية مرنة لتسهيل التنسيق مع عناصر أخرى (مثل أيقونات) */
+  /*align-items: center;            /* يُحاذي العناصر الفرعية (مثل النص أو الصورة) رأسيًّا في المنتصف */
 }
 
 .logo-dot {
@@ -142,7 +142,7 @@ nav a:hover::after {
 
 .hero h1 .highlight {
   background: linear-gradient(135deg, #e74c3c, #f39c12);
-  -webkit-background-clip: text;
+  /*-webkit-background-clip: text;*/
   background-clip: text;
   color: transparent;
   padding: 0 0.2rem;

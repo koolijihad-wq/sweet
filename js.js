@@ -1,5 +1,6 @@
 // السلة
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+// let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // إظهار إشعار
 function showNotification() {
